@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+
+    <!--
+        react
+        react-dom
+    -->
+</head>
+<body>
+    <div class="root">
+
+    </div>
+<!-- <script type="text/javascript">  -->
+<script type="text/babel"> 
+    // 컴포넌트란 무엇인가 ? 
+    
+    const ABC = (props) => {
+        return (
+            <div>
+                hello ABC
+                <br />
+            </div>
+        )
+    }
+    /* 
+        type:div,
+        props:{
+            children:'aksadjasfja',
+            onClick:()=>{
+                console.log('a')
+            },
+        }
+        type:div,
+        props:{
+            children:[
+                type:'div',
+
+            ]
+        }
+    */
+
+
+    // jsx를 반환하는 함수 또는 클래스
+    const App = () => {
+        const a = () => {
+            console.log('a')
+        }
+        const list2 = [1,2,3].map(v => <div>{v}</div>)
+        const list = [
+            <div>1</div>,
+            <div>2</div>,
+            <div>3</div>
+        ]
+        const [value, setValue] = React.useState() // use -> hook ()안에 들어가는 값이 첫값
+        // setValue를 통해 값을 변경해줌
+        /* 
+            
+        */
+        return (
+            <div>
+                <ABC >safdsadfsd </ABC>
+                {list}
+            </div>
+        )
+
+        // () 영역구분용 아무의미 없음 리턴값이다
+    }
+
+    const root = ReactDOM.createRoot(document.querySelector('.root'));
+    // root.render(<div></div>)
+    root.render(<App />)
+    console.log(<App>asdfsdfsad </App>)
+    // root.render(App())
+    // console.log(<div class="aa">abc</div>)
+    // console.log(ReactDOM.createRoot(document.querySelector('.root')))
+    // props
+
+</script>
+    
+</body>
+</html>
