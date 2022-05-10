@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {% for item in items %}
+    <form method="post">
+        <table border="1">
+            <a>{{item.idx}}</a>
+            <div class="form-floating">
+                <label for="name">{{items.name}}</label>
+                <label for="name">작성자</label>
+            </div>
+            <div class="form-floating">
+                <input class="form-control" name="title" type="text" value={{item.subject}}
+                    data-sb-validations="required" />
+                <label for="email">제목</label>
+            </div>
+            <div class="form-floating">
+                <textarea class="form-control" name="content" id="message" style="height: 12rem"
+                    data-sb-validations="required">{{item.content}}</textarea>
+                <label for="message">내용</label>
+            </div>
+            <div class="form-floating">
+                <input class="form-control" name="regdate" type="text" value={{item.date}}
+                    data-sb-validations="required" />
+                <label for="email">등록일</label>
+            </div>
+            <br />
+            <br />
+
+            <div class='headline'>
+                    <button type="submit" class="btn btn-outline-success"
+                        formaction='/board/update'>글 수정</button>
+                    <button type="submit" class="btn btn-outline-success"
+                        formaction="/board/delete">글 삭제</button>
+                    <button type="button" class="btn btn-outline-success"
+                        onclick="location.href='/board/page'">목록으로</button>
+            </div>
+    </form>
+    {% endfor %}
+</body>
+</html>
