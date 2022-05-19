@@ -119,6 +119,7 @@ async function main() {
 }
 
 main()
+// console.log('a)
 // console.log('경기 시작')
 // 아반떼( ()=>{
 //     소나타( ()=> {
