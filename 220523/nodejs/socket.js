@@ -31,9 +31,10 @@ module.exports = (server) => {
 
         ws.on('close', () => {
             console.log('돔황챠')
-            sockets = sockets.filter( v=> v.id === ws.id )
+            sockets = sockets.filter( v=> v.id !== ws.id )
+            console.log(sockets.length)
         })
-        console.log('sockets.lenght',sockets.lenght)
+        console.log(sockets.length)
     })
 
     function boradcast(data) {
