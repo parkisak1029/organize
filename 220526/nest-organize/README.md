@@ -72,6 +72,5 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 
 Nest is [MIT licensed](LICENSE).
 
-# 'plugin:prettier/recommended',
-
-무조건 없애야 함... 아니면 prettier에러 엄청뜸
+#  npm install class-validator class-transformer
+pipe 모듈 다운받는것
