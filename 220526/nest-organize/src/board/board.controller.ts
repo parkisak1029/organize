@@ -6,7 +6,7 @@ import { BoardStatusValidationPipe } from './pipe/board-status-validation.pipe.d
 
 @Controller('board')
 export class BoardController {
-  // constructor(private boardService: BoardService) { }
+  constructor(private boardService: BoardService) { }
   // //private 선언시 암묵적으로 프로퍼티로 선언된다0.
 
   // @Get()
