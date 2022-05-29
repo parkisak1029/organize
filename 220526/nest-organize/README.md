@@ -74,3 +74,6 @@ Nest is [MIT licensed](LICENSE).
 
 #  npm install class-validator class-transformer
 pipe 모듈 다운받는것
+
+# nestjs database 사용법 보는곳
+https://docs.nestjs.com/techniques/database
