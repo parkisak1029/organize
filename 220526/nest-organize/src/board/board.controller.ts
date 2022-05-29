@@ -8,7 +8,12 @@ import { Board } from './board.entity';
 @Controller('board')
 export class BoardController {
   constructor(private boardService: BoardService) { }
-  // //private 선언시 암묵적으로 프로퍼티로 선언된다0.
+  // //private 선언시 암묵적으로 프로퍼티로 선언된다.
+
+  @Get()
+  getAllBoard(): Promise<Board[]> {
+    return this.boardService.getAllBoards();
+  }
 
   // @Get()
   // getAllBoard(): Board[] {
@@ -49,6 +54,14 @@ export class BoardController {
   // deleteBoard(@Param('id') id: string): void {
   //   this.boardService.deleteBoard(id);
   // }
+
+  @Patch('/:id/status')
+  updateBoardStatus(
+    @Param('id', ParseIntPipe) id: number,
+    @Body('status', BoardStatusValidationPipe) status: BoardStatus
+  ) {
+    return this.boardService.updateBoardStatus(id, status);
+  }
 
   // @Patch('/:id/status')
   // updateBoardStatus(

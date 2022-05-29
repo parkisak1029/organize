@@ -16,6 +16,10 @@ export class BoardService {
   //   return this.board;
   // }
 
+  async getAllBoards(): Promise<Board[]> {
+    return this.boardRepository.find()
+  }
+
   // createBoard(createBoardDto: CreateBoardDto) {
   //   const { title, description } = createBoardDto
   //   const board: Board = {
@@ -53,7 +57,9 @@ export class BoardService {
 
   async deleteBoard(id: number): Promise<void> {
     const result = await this.boardRepository.delete(id)
-
+    if (result.affected === 0) {
+      throw new NotFoundException(`can't not ${id}`)
+    }
     console.log('result', result)
   }
 
@@ -62,9 +68,18 @@ export class BoardService {
   //   this.board = this.board.filter((board) => board.id !== found.id);
   // }
 
+  async updateBoardStatus(id: number, status: BoardStatus): Promise<Board> {
+    const board = await this.getBoardById(id);
+
+    board.status = status;
+    await this.boardRepository.save(board)
+    return board;
+  }
+
   // updateBoardStatus(id: string, status: BoardStatus): Board {
   //   const board = this.getBoardById(id);
   //   board.status = status;
   //   return board;
   // }
+
 }
