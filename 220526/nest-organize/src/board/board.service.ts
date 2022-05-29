@@ -4,6 +4,7 @@ import { v1 as uuid } from 'uuid';
 import { CreateBoardDto } from './dto/create.board.dto';
 import { BoardRepository } from './board.repository';
 import { InjectRepository } from '@nestjs/typeorm';
+import { Board } from './board.entity';
 
 @Injectable()
 export class BoardService {
@@ -27,6 +28,16 @@ export class BoardService {
   //   this.board.push(board);
   //   return board;
   // }
+
+  async getBoardById(id: number): Promise<Board> {
+    const found = await this.boardRepository.findOne(id);
+
+    if (!found) {
+      throw new NotFoundException(`notFound ${id}`)
+    }
+
+    return found;
+  }
 
   // getBoardById(id: string): Board {
   //   const found = this.board.find((board) => board.id === id);
