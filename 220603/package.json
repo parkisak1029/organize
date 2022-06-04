@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "fs": "^0.0.1-security",
+    "ipfs": "^0.63.2",
+    "ipfs-mini": "^1.1.5"
+  }
+}
