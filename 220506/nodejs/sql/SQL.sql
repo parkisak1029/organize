@@ -6,6 +6,7 @@ CREATE TABLE board(
     `date` TIMESTAMP default current_timestamp NOT NULL,
     `like` INT(11) default 0 NOT NULL,
     `hit` INT(11) default 0 NOT NULL
+    `publicKey` VARCHAR(100) NOT NULL
 );
 
 
