@@ -5,7 +5,7 @@ const upload = multer({ dest: 'uploads/' })
 
 const app = express()
 
-app.post('/images', upload.single('avatar'), (req, res) => {
+app.post('/images', upload.single('image'), (req, res) => {
     res.send('okay')
 })
 
