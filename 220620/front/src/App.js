@@ -38,12 +38,12 @@ function App() {
         <button type="submit">Submit</button>
       </form>
 
-      {images.map(image => (
-        <div key={image}>
+      {images.map((image, index) => (
+        <div key={index}>
           <img src={image}></img>
         </div>
       ))}
-
+      <img src="/images/6ac554c8d5a40852b8d0359a4c355e65"></img>
     </div>
   );
 }
