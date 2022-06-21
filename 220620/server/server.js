@@ -21,6 +21,9 @@ app.get('/images/:Key', (req, res) => {
 app.post('/images', upload.single('image'), async (req, res) => {
     const file = req.file
     console.log(file)
+
+    //apply filter
+    // resize
     const result = await uploadFile(file)
     await unlinkFile(file.path)
     console.log(result)
