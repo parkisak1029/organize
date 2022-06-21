@@ -1,5 +1,7 @@
 var fs = require("fs");
-const { uploadFile, getFileStream } = require('./s3')
+const { uploadFile, getFileStream, deleteFile } = require('./s3')
+const S3 = require('aws-sdk/clients/s3')
+require('dotenv').config()
 
 const baseURI = 'buf\\';
 
@@ -10,16 +12,19 @@ fs.readFile(`./image/1.png`, async function (err, data) {
     var encodedImage = new Buffer(data, 'binary');
 
     await fs.writeFileSync(`./buf/1`, encodedImage);
-    let files = {
+    let file = {
         path: `${baseURI}1`,
         filename: `1`
     }
-    let file = {
-        path: `${baseURI}${files.ETag}`,
-        filename: `${files.ETag}`
-    }
     // console.log('file : ', file)
     let tdata = await uploadFile(file);
+    s3.deleteObject({
+        Bucket: 'mybucket', // 사용자 버켓 이름
+        Key: 'image/helloworld.jpeg' // 버켓 내 경로
+    }, (err, data) => {
+        if (err) { throw err; }
+        console.log('s3 deleteObject ', data)
+    })
     console.log('tdata : ', tdata);
     // console.log(encodedImage);
 

@@ -26,7 +26,18 @@ function uploadFile(file) {
     return s3.upload(uploadParams).promise()
 }
 exports.uploadFile = uploadFile
+function deleteFile(file) {
+    const fileStream = fs.createReadStream(file.path)
 
+    const uploadParams = {
+        Bucket: bucketName,
+        Body: fileStream,
+        Key: file.filename
+    }
+
+    return s3.delete(uploadParams).promise()
+}
+exports.deleteFile = deleteFile
 
 // downloads a file from s3
 function getFileStream(fileKey) {
