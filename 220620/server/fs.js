@@ -1,6 +1,8 @@
 var fs = require("fs");
 const { uploadFile, getFileStream } = require('./s3')
 const S3 = require('aws-sdk/clients/s3')
+const pool = require('./db')
+
 require('dotenv').config()
 const bucketName = process.env.AWS_BUCKET_NAME
 const region = process.env.AWS_BUCKET_REGION
@@ -15,11 +17,7 @@ const s3 = new S3({
 
 const baseURI = 'buf\\';
 
-let num1 = [0, 0, 33, 66, 99, 122]
-let num2 = [0, 32, 65, 98, 121, 154]
-
-
-for (let i = 1; i < 6; i++) {
+for (let i = 1; i < 151; i++) {
     fs.readFile(`./image/${i}.png`, async function (err, data) {
         if (err) throw err;
         var encodedImage = new Buffer(data, 'binary');
@@ -27,13 +25,15 @@ for (let i = 1; i < 6; i++) {
         let rep = hash.replaceAll('/', '').replaceAll('+', '').replaceAll('=', '')
         let len = rep.length
 
-        let hashCode = await rep.slice(len - 32)
+        let hashCode = await rep.slice(len - 31)
         fs.writeFileSync(`./buf/${hashCode}`, encodedImage);
         // Encode to base64
         let file = {
             path: `${baseURI}${hashCode}`,
             filename: `${hashCode}`
         }
+        const [result] = await pool.query(`INSERT INTO orga(number, image) VALUES("${i}","${hashCode}")`)
+        console.log(result)
         console.log('file : ', file)
         let tdata = await uploadFile(file);
         console.log('tdata : ', tdata);
