@@ -10,15 +10,20 @@
 
 <body>
     <h1>테스트</h1>
-    <from method="post">
-        {% for item in items %}
-        <p>{{item.title}}</p>
-        <p>{{item.date}}</p>
-        {% endfor %}
+    <from method="post" action="http://localhost:3000/test">
+
     </from>
     <form method="post" action="http://localhost:3000/test">
-
+        {% for item in items %}
+        <lable>title</lable>
+        <div>{{item.title}}</div>
+        <p>{{item.date}}</p>
+        {% endfor %}
         <ul>
+            <li>
+                <lable>title</lable>
+                <input type="text" name="title" id="title"></input>
+            </li>
 
             <li>
                 <lable>이름</lable>

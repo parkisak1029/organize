@@ -64,23 +64,21 @@ app.get('/test', (req, res) => {
 })
 
 app.get('/index', async (req, res) => {
-    res.render('index')
     const [result] = await pool.query('SELECT * FROM titles')
+    res.render('index', {
+        items: result
+    })
 })
 app.post('/test', async (req, res) => {
-    let { vote, address } = req.body
+    let { vote, address, title } = req.body
+    console.log(vote, title)
     let resa = await pool.query(`select * from voting WHERE address = "${address}"`)
     if (resa[0].length === 0) {
-        const [result] = await pool.query(`INSERT INTO voting(address, vote)VALUES("${address}","${vote}")`)
-        res.render('index', {
-            items: result
-        })
+        const [result] = await pool.query(`INSERT INTO voting(title ,address, vote)VALUES("${title}","${address}","${vote}")`)
+        res.render('index')
     } else {
         console.log("실패")
     }
-    const idx = result.idx
-    const { title, date } = await pool.query(`insert into voting(title, titleDate) select (title, date) from titles where idx = "${idx}"  `)
-
 })
 
 app.post('/title', async (req, res) => {
