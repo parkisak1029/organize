@@ -21,7 +21,7 @@ const s3 = new S3({
 
 const baseURI = 'buf\\';
 
-for (let i = 1; i < 31; i++) {
+for (let i = 1; i < 151; i++) {
     fs.readFile(`./image/${i}.png`, async function (err, data) {
         if (err) throw err;
         var encodedImage = new Buffer(data, 'binary');
@@ -36,7 +36,7 @@ for (let i = 1; i < 31; i++) {
             path: `${baseURI}${hashCode}`,
             filename: `${hashCode}`
         }
-        const [result] = await pool.query(`INSERT INTO whiteBrownyImg(imgNum, images) VALUES("${i}","${hashCode}")`)
+        const [result] = await pool.query(`INSERT INTO dummyImg(imgNum, images) VALUES("${i}","${hashCode}")`)
         // console.log(result)
         // console.log('file : ', file)
         let tdata = await uploadFile(file);
