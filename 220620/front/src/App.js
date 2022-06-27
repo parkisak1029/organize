@@ -43,7 +43,7 @@ function App() {
           <img src={image}></img>
         </div>
       ))}
-      <img src="/images/0txVZqKAG2bv20wAAAABJRU5ErkJggg"></img>
+      <img src="/images/103PwJNvL0vaYkLAAAAAElFTkSuQmCC"></img>
     </div>
   );
 }
